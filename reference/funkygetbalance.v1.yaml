@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: FunkyGetBalance
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /Funky/User/GetBalance:
+    post:
+      summary: GetBalance
+      operationId: post-Funky-User-GetBalance
+      responses:
+        '200':
+          description: OK
+          headers:
+            User-Agent:
+              schema:
+                type: string
+              description: funky
+            Authentication:
+              schema:
+                type: string
+              description: f3352-4134-gwere
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                  errorMessage:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      balance:
+                        type: integer
+              examples:
+                example:
+                  value:
+                    errorCode: 0
+                    errorMessage: NoError
+                    data:
+                      balance: 1000
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: User-Agent
+          description: ''
+        - schema:
+            type: string
+          in: header
+          name: Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+                playerId:
+                  type: string
+                fpId:
+                  type: integer
+            examples:
+              example:
+                value:
+                  sessionId: '123'
+                  playerId: '555'
+                  fpId: 6
+components:
+  schemas: {}
